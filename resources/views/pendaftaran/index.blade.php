@@ -33,7 +33,21 @@
                 <div class="form-group">
                   <div class="col-md-12 col-md-offset-1">
                   <label for="fakultas" class="control-label">Fakultas</label>
-                    <input type="text" class="form-control" id="fakultas" name="fakultas" placeholder="Fakultas Siswa Pendaftar" value="{{ old('fakultas') }}" >
+                    <select class="form-control"  name="fakultas">
+                          <option selected="selected" disabled="disabled" value="">- Select Fakultas -</option>
+                          <option value="FTI">FTI</option>
+                          <option value="FTMD">FTMD</option>
+                          <option value="FTSL">FTSL</option>
+                          <option value="FTTM">FTTM</option>
+                          <option value="FITB">FITB</option>
+                          <option value="FMIPA">FMIPA</option>
+                          <option value="SITHR">SITH R</option>
+                          <option value="SITHS">SITH S</option>
+                          <option value="SF">SF</option>
+                          <option value="STEI">STEI</option>
+                          <option value="SAPPK">SAPPK</option>
+                          <option value="SBM">SBM</option>
+                        </select>
                   </div>
                 </div>
               </div>
@@ -44,7 +58,7 @@
                   <div class="form-group">
                     <div class="col-md-12 col-md-offset-1">
                       <label for="nim" class=" control-label">NIM</label>
-                      <input type="text" maxlength="13" class="form-control" id="nim" name="nim" placeholder="NIM Siswa Pendaftar di Fakultas" value="{{ old('nim') }}" onKeypress="return n(event)">
+                      <input type="text" maxlength="8" class="form-control" id="nim" name="nim" placeholder="NIM Siswa Pendaftar di Fakultas" value="{{ old('nim') }}" onKeypress="return n(event)">
                     </div>
                   </div>
                 </div>
@@ -112,7 +126,7 @@
                   <div class="form-group">
                     <div class="col-md-12 col-md-offset-1">
                       <label for="ipk" class=" control-label">Harapan IPK</label>
-                      <input type="text" maxlength="13" class="form-control" id="ipk" name="ipk" placeholder="Harapan IPK Siswa Pendaftar" value="{{ old('ipk') }}" onKeypress="return n(event)">
+                      <input type="number" step="0.01" maxlength="13" class="form-control" id="ipk" name="ipk" placeholder="Harapan IPK Siswa Pendaftar" value="{{ old('ipk') }}" onKeypress="return n(event)">
                     </div>
                   </div>
                 </div>

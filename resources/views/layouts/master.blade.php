@@ -255,6 +255,7 @@
 	<script type="text/javascript">
 		function bayar(){
 			var total = parseInt(document.getElementById('total_bayar').value);
+			var setengah = total/2;
 
 			var akan_bayar = parseInt(document.getElementById('akan_bayar').value);
 			var cicilan = parseInt(document.getElementById('cicilan').value);
@@ -264,6 +265,10 @@
 				document.getElementById('akan_bayar').value = "";
 				document.getElementById('akan_bayar').focus();
 
+			}else if(akan_bayar<setengah){
+				alert('Pembayaran pertama minimal setengahnya atau sebesar Rp. '+setengah);
+				document.getElementById('akan_bayar').value = "";
+				document.getElementById('akan_bayar').focus();
 			}else if (cicilan > 0 && akan_bayar < total) {
 				alert('Pembayaran yang ke 2 ,dan harus langsung dilunasi sebesar Rp. '+total);
 				document.getElementById('akan_bayar').value = "";

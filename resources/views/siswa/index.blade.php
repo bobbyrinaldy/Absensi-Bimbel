@@ -21,7 +21,7 @@
               <th style="text-align:center">No Telp Ortu</th>
               <th style="text-align:center">Fakultas</th>
               <th style="text-align:center">Asal Sekolah</th>
-              <th style="text-align:center">Harapan IPK</th>
+              <th style="text-align:center">Group</th>
               <th style="text-align:center">Petugas</th>
               <th style="text-align:center">Action</th>
             </tr>
@@ -42,7 +42,14 @@
                 <td style="text-align:center"><small>{{ $item->no_tlp_ortu }}</small></td>
                 <td style="text-align:center">{{ $item->fakultas }}</td>
                 <td style="text-align:center">{{ $item->asal_sekolah }}</td>
-                <td style="text-align:center">{{ $item->ipk }}</td>
+                @if ($item->kriteria == "P")
+                  <td style="text-align:center"><span class="label label-info">Private</span></td>
+                @elseif ($item->kriteria == "D")
+                  <td style="text-align:center"><span class="label label-warning">Group 2 Orang</span></td>
+                @else
+                  <td style="text-align:center"><span class="label label-danger">Group 3 Orang</span></td>
+
+                @endif
                 <td style="text-align:center">{{ $item->user->name }}</td>
                 <td style="text-align:center">
                   <a href="/siswa/edit/{{$item->id}}" rel="tooltip" title="Edit" class="btn btn-warning btn-xs btn-simple"><span class="fa fa-edit"></span></a>
