@@ -3,6 +3,11 @@
 @section('title','Teacher')
 
 @section('content')
+
+@php
+  $u = auth::user()->status;
+@endphp
+
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
@@ -55,7 +60,7 @@
 
 
 
-              <div class="row">
+              <div class="row" id="admin">
 
                 <div class="col-md-6" style="width:42%;">
                   <div class="form-group" >
@@ -86,6 +91,31 @@
 
               </div>
 
+              {{-- <div class="row" id="user">
+                <div class="col-md-6" style="width:42%;">
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="matkul" class="control-label">Mata Kuliah</label>
+                      <input type="text" class="form-control" name="matkul" placeholder="matkul" value="{{auth::user()->id}}" >
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-6" >
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="pengajar" class="control-label">Pengajar/Tutor</label>
+                      <input type="text" class="form-control" name="pengajar" id="pengajar" placeholder="pengajar" value="@php echo Date('h:m:s'); @endphp"  readonly >
+                    </div>
+                  </div>
+                </div>
+
+              </div> --}}
+
+
+
                 <div class="row">
 
                   <div class="col-md-6" style="width:42%;">
@@ -101,7 +131,7 @@
                     <div class="form-group">
                       <div class="col-md-12 col-md-offset-1">
                       <label for="waktu" class="control-label">Waktu</label>
-                        <input type="text" class="form-control" name="waktu" id="waktu" placeholder="Waktu"  readonly >
+                        <input type="text" class="form-control" name="waktu" id="waktu" placeholder="Waktu" value="@php echo Date('H:m:s'); @endphp"  readonly >
                       </div>
                     </div>
                   </div>
@@ -154,13 +184,20 @@
      format: 'yyyy/mm/dd',
     autoclose: true,
     todayBtn : 'linked',
-    todayHighlight : 'true'
+    todayHighlight : 'true',
+    startDate : '0'
     });
 </script>
 
 <script type="text/javascript">
 
 $(document).ready(function(){
+  var u = '<?php echo $u; ?>';
+  if (u != 'admin') {
+    console.log('bukan admin');
+  } else {
+    console.log('admin');
+  }
 
   $('#matkul').on('change', function() {
       var matkul = this.value;
@@ -214,29 +251,4 @@ $(document).ready(function(){
 });
 </script>
 
-<script type="text/javascript">
-        tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-        tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-
-        function GetClock(){
-        var d=new Date();
-        var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getFullYear();
-        var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
-
-        if(nhour==0){ap=" AM";nhour=12;}
-        else if(nhour<12){ap=" AM";}
-        else if(nhour==12){ap=" PM";}
-        else if(nhour>12){ap=" PM";nhour-=12;}
-
-        if(nmin<=9) nmin="0"+nmin;
-        if(nsec<=9) nsec="0"+nsec;
-
-        document.getElementById('waktu').value=""+nhour+":"+nmin+":"+nsec+ap+"";
-        }
-
-        window.onload=function(){
-        GetClock();
-        setInterval(GetClock,1000);
-        }
-  </script>
 @endsection

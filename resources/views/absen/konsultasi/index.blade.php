@@ -17,8 +17,8 @@
               <th style="text-align:center">Tanggal</th>
               <th style="text-align:center">Pengajar</th>
               <th style="text-align:center">Siswa</th>
-              <th style="text-align:center">Tempat</th>
               <th style="text-align:center">Waktu</th>
+              <th style="text-align:center">Tempat</th>
               <th style="text-align:center">Keterangan</th>
               <th style="text-align:center">Action</th>
             </tr>

@@ -128,6 +128,28 @@
 
               </div>
 
+              <div class="row">
+
+                <div class="col-md-6" style="width:42%;">
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                      <label for="username" class=" control-label">Username</label>
+                      <input type="text" maxlength="13" class="form-control" id="username" name="username" placeholder="Username Login" value="{{ old('username') }}" onKeypress="return n(event)">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="password" class="control-label">Password</label>
+                      <input type="password" class="form-control" id="password" name="password" placeholder="Password Login" value="{{ old('password') }}" >
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
                 <div class="row">
 
                   <div class="col-md-6" style="width:42%;">

@@ -19,8 +19,10 @@
               <th style="text-align:center">Pengajar</th>
               <th style="text-align:center">Mata Kuliah</th>
               <th style="text-align:center">Tempat</th>
-              <th style="text-align:center">Waktu</th>
               <th style="text-align:center">Keterangan</th>
+              <th style="text-align:center">Waktu Masuk</th>
+              <th style="text-align:center">Waktu Selesai</th>
+              <th style="text-align:center">Durasi</th>
               <th style="text-align:center">Action</th>
             </tr>
           </thead>
@@ -43,8 +45,30 @@
                   <td style="text-align:center"><span class="label label-primary">Kimia</span></td>
                 @endif
                 <td style="text-align:center">{{ $item->tempat }}</td>
-                <td style="text-align:center">{{ $item->waktu }}</td>
                 <td style="text-align:center">{{ $item->keterangan }}</td>
+                <td style="text-align:center">{{ $item->waktu }}</td>
+                @if (empty($item->selesai))
+                <td style="text-align:center"><a href="/absen_kelas/selesai/{{$item->id}}" class="btn btn-danger btn-xs">Selesai</a> </td>
+                <td style="text-align:center"><span class="label label-danger">Belum Selesai</span></td>
+
+                @else
+                <td style="text-align:center">{{ $item->selesai }}</td>
+                  @php
+                    $mk = strtotime($item->waktu);
+                    $mk2 = strtotime($item->selesai);
+                    $diff = $mk2-$mk;
+                    $hours = floor($diff / 60);
+
+                    // // Convert Ke Date Time
+                    // $d_mk = new DateTime($mk);
+                    // $today = new DateTime($mk2);
+
+                    // $diff = $today->diff($d_mk);
+                    // // dd($d_mk,$todayHighlight);
+                    // $lama_mengajar = $diff->h ." Jam ".$diff->i." Menit";
+                  @endphp
+                <td style="text-align:center">{{$hours}} Menit</td>
+                @endif
                 <td style="text-align:center">
                   <a href="/absen_kelas/edit/{{$item->id}}" rel="tooltip" title="Edit" class="btn btn-warning btn-xs btn-simple"><span class="fa fa-edit"></span></a>
                   <a href="/absen_kelas/hapus/{{$item->id}}"rel="tooltip" title="Delete" class="btn btn-danger btn-xs btn-simple"><span class="fa fa-trash"></span></a>

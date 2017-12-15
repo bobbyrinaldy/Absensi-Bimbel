@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Administration')
+@section('title','Data Pengajar')
 
 @section('content')
 
@@ -21,6 +21,7 @@
               <th style="text-align:center">Jurusan</th>
               <th style="text-align:center">Pengajar</th>
               <th style="text-align:center">Petugas</th>
+              <th style="text-align:center">Status Login</th>
               <th style="text-align:center">Action</th>
             </tr>
           </thead>
@@ -46,6 +47,12 @@
                   <td style="text-align:center"><span class="label label-primary">Kimia</span></td>
                 @endif
                 <td style="text-align:center">{{ $item->user->name }}</td>
+
+                @if (\App\User::where('teacher_id',$item->id)->first() == 'admin')
+                  <td style="text-align:center"><span class="label label-success">Admin</span> </td>
+                @else
+                  <td style="text-align:center"><span class="label label-success">User</span> </td>
+                @endif
                 <td style="text-align:center">
                   <a href="/pengajar/edit/{{$item->id}}" rel="tooltip" title="Edit" class="btn btn-warning btn-xs btn-simple"><span class="fa fa-edit"></span></a>
                   <a href="/pengajar/hapus/{{$item->id}}"rel="tooltip" title="Delete" class="btn btn-danger btn-xs btn-simple"><span class="fa fa-trash"></span></a>
