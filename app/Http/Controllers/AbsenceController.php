@@ -7,6 +7,7 @@ use App\Model\Group;
 use App\Model\Subgroup;
 use App\Model\Teacher;
 use App\Model\Absence;
+use DB;
 
 
 class AbsenceController extends Controller
@@ -97,5 +98,32 @@ class AbsenceController extends Controller
 
       return $data;
 
+    }
+
+    public function selesai($id)
+    {
+      $date = Date('h:m:s');
+
+      DB::table('absences')
+            ->where('id', $id)
+            ->update([
+              'selesai' => $date
+            ]);
+
+      $absen = Absence::find($id);
+
+      $mk = strtotime($absen->waktu);
+      $mk2 = strtotime($absen->selesai);
+      $diff = $mk2-$mk;
+      $hours = floor($diff / 60);
+
+      DB::table('absences')
+            ->where('id', $id)
+            ->update([
+              'durasi' => $hours,
+            ]);
+
+      
+      return back();
     }
 }

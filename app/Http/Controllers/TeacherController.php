@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Teacher;
+use App\User;
 
 class TeacherController extends Controller
 {
@@ -37,6 +38,14 @@ class TeacherController extends Controller
       $t->user_id = $request->petugas;
 
       $t->save();
+
+      $u = new User;
+
+      $u->name = $request->nama;
+      $u->username = $request->username;
+      $u->teacher_id = $t->id;
+      $u->password = bcrypt($request->password);
+      $u->save();
 
       return redirect('/pengajar');
     }

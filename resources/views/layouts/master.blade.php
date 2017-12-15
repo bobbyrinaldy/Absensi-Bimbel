@@ -96,7 +96,8 @@
 				</a>
 			</div>
 
-	    	<div class="sidebar-wrapper">
+			@if (auth::user()->status == 'admin')
+				<div class="sidebar-wrapper">
 	            <ul class="nav">
 								<li class="{{ Request::is('/') ? 'active' : ''}}">
 									<a href="/">
@@ -154,11 +155,39 @@
                     </a>
                 </li>
 
+	            </ul>
+	    	</div>
 
+	    	@else
+<div class="sidebar-wrapper">
+	            <ul class="nav">
+					<li class="{{ Request::is('/') ? 'active' : ''}}">
+						<a href="/">
+							<i class="material-icons">dashboard</i>
+								<p>Dashboard</p>
+						</a>
+					</li>
 
+				<li class="{{ Request::is('absen_kelas', 'absen_kelas/*') ? 'active' : ''}}">
+                    <a href="/absen_kelas">
+                        <i class="material-icons">assignment</i>
+                        <p>Absen Mengajar</p>
+                    </a>
+                </li>
+
+				<li class="{{ Request::is('absen_konsultasi', 'absen_konsultasi/*') ? 'active' : ''}}">
+                    <a href="/absen_konsultasi">
+                        <i class="material-icons">assignment_turned_in</i>
+                        <p>Absen Konsultasi</p>
+                    </a>
+                </li>
 
 	            </ul>
 	    	</div>
+			@endif
+	    	
+
+
 	    </div>
 
 	    <div class="main-panel">
@@ -174,41 +203,64 @@
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
+							@if (auth::user()->status == 'admin')
+								<li>
+									<a href="/admin/user" class="dropdown-toggle">
+		 							   <i class="material-icons">verified_user</i>
+		 							   <p class="hidden-lg hidden-md"></p>
+										 Tambah Admin
+			 						</a>
+								</li>
+							@endif
+							
+
 							<li>
 								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">dashboard</i>
-									<p class="hidden-lg hidden-md">Dashboard</p>
-								</a>
+	 							   <i class="material-icons">book</i>
+	 							   <p class="hidden-lg hidden-md"></p>
+									 Laporan
+		 						</a>
+               					 <ul class="dropdown-menu">
+									<li><a href="/laporan/statistik_matkul">
+                      						Laporan Statistik Mata Kuliah
+                  						</a>
+					              	</li>
+
+					              	<li><a href="/laporan/total_mengajar">
+                      						Laporan Total Mengajar
+                  						</a>
+					              	</li>
+
+					              	<li><a href="/laporan/total_konsultasi">
+                      						Laporan Jumlah Konsultasi Siswa
+                  						</a>
+					              	</li>
+
+					              	<li><a href="/laporan/siswa_belum_lunas">
+                      						Laporan Siswa Belum Lunas
+                  						</a>
+					              	</li>
+								</ul>
 							</li>
 
-              <li>
+              				<li>
 								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
 	 							   <i class="material-icons">person</i>
 	 							   <p class="hidden-lg hidden-md"></p>
 									 {{ Auth::user()->name }}
 		 						</a>
-                <ul class="dropdown-menu">
-									<li><a href="{{ url('/logout') }}"
-                      onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                      Logout
-                  </a>
-                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;" >
-                      {{ csrf_field() }}
-                  </form></li>
+               					 <ul class="dropdown-menu">
+               					 	<li><a href="/change_password">Change Password</a></li>
+									<li><a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                      						Logout
+                  						</a>
+					                  <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;" >
+					                      {{ csrf_field() }}
+					                  </form>
+					              	</li>
 								</ul>
 							</li>
 						</ul>
-
-						<form class="navbar-form navbar-right" role="search">
-							<div class="form-group  is-empty">
-								<input type="text" class="form-control" placeholder="Search">
-								<span class="material-input"></span>
-							</div>
-							<button type="submit" class="btn btn-white btn-round btn-just-icon">
-								<i class="material-icons">search</i><div class="ripple-container"></div>
-							</button>
-						</form>
 					</div>
 				</div>
 			</nav>
@@ -247,6 +299,8 @@
 
 	<!-- Material Dashboard javascript methods -->
 	<script src="{{asset('assets/js/material-dashboard.js')}}"></script>
+	<script src="{{asset('plugins/chart/code/highcharts.js')}}"></script>
+	<script src="{{asset('plugins/chart/code/modules/exporting.js')}}"></script>
 
 	@yield('js')
 

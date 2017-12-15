@@ -74,6 +74,59 @@
   							</div>
   						</div>
 
+              <div class="col-md-12">
+                      <div class="col-md-12">
+                          <div class="card">
+                              <div class="card-header" data-background-color="purple">
+                                  <h4 class="title">KBM yang sedang berlangsung</h4>
+                              </div>
+                              <div class="card-content table-responsive">
+                                  <table class="table text-primary">
+                                    <thead>
+                                      <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Jam Mulai</th>
+                                        <th>Durasi</th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      @php
+                                        $i=1;
+                                        $time = date('h:m:s');
+                                      @endphp
+
+                                      @foreach ($kbm as $item)
+                                        <tr>
+                                          <td>{{ $i++ }}</td>
+                                          <td>{{ $item->pengajar->nama }}</td>
+                                          @php
+                                            $mk = $item->created_at;
+
+                                            // Convert Ke Date Time
+                                            $d_mk = new DateTime($mk);
+                                            $today = new DateTime();
+
+                                            $diff = $today->diff($d_mk);
+                                            // dd($d_mk,$todayHighlight);
+                                            $lama_mengajar = $diff->h ." Jam ".$diff->i." Menit";
+                                          @endphp
+                                          <td>{{ date('H:i',strtotime($item->created_at)) }} WIB</td>
+                                          <td>{{$lama_mengajar}}</td>
+
+                                        </tr>
+                                      @endforeach
+
+                                    </tbody>
+                                  </table>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+            </div>
+
 
               <div class="row">
               <div class="col-md-6">
@@ -170,4 +223,6 @@
                       </div>
                   </div>
             </div>
+
+            
 @endsection
