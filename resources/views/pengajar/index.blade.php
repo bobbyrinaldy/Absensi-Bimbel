@@ -6,7 +6,7 @@
 
   <div class="card">
       <div class="card-header" data-background-color="blue">
-          <h4 class="title">Data Pegajar</h4>
+          <h4 class="title">Data Pengajar</h4>
       </div>
       <div class="card-content table-responsive">
          <h3 class="box-title"><a href="/pengajar/create" class="btn btn-primary">Tambah Pengajar</a></h3>
