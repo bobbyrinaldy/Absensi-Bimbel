@@ -112,12 +112,12 @@
                     </a>
                 </li>
 
-								<li class="{{ Request::is('administrasi', 'administrasi/*') ? 'active' : ''}}">
+								{{-- <li class="{{ Request::is('administrasi', 'administrasi/*') ? 'active' : ''}}">
                     <a href="/administrasi">
                         <i class="material-icons">attach_money</i>
                         <p>Administrasi</p>
                     </a>
-                </li>
+                </li> --}}
 								<li class="{{ Request::is('pengajar', 'pengajar/*') ? 'active' : ''}}">
                     <a href="/pengajar">
                         <i class="material-icons">accessibility</i>

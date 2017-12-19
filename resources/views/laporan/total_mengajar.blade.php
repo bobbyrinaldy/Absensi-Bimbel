@@ -15,6 +15,7 @@
                                         <th style="text-align:center">Nama Pengajar</th>
                                         <th style="text-align:center">Mata Kuliah</th>
                                         <th style="text-align:center">Total Durasi Mengajar (Menit)</th>
+                                        <th style="text-align:center">Total Sesi Mengajar</th>
 
                                       </tr>
                                     </thead>
@@ -37,6 +38,7 @@
                                       		@endif
 
                                       		<td style="text-align:center">{{\App\Model\Absence::where('teacher_id',$item->teacher_id)->sum('durasi')}} Menit</td>
+                                          <td style="text-align:center">{{\App\Model\Absence::where('teacher_id',$item->teacher_id)->count()}}X Pertemuan</td>
                                       	</tr>
                                       @endforeach
 
