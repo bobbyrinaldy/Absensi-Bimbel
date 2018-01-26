@@ -61,7 +61,7 @@
 						<div class="col-md-5" id="ga_bisa_bayar">
 							<div class="form-group">
 								<label for="total_bayar" class="control-label">Akan Membayar</label>
-									<input type="text" class="form-control" name="akan_bayar" id="akan_bayar" onchange="bayar()" required>
+									<input type="text" value="0" class="form-control digit" name="akan_bayar" id="akan_bayar" onchange="bayar()"  required>
 							</div>
 						</div>
 
@@ -112,12 +112,12 @@
                     </a>
                 </li>
 
-								{{-- <li class="{{ Request::is('administrasi', 'administrasi/*') ? 'active' : ''}}">
+								<li class="{{ Request::is('administrasi', 'administrasi/*') ? 'active' : ''}}">
                     <a href="/administrasi">
                         <i class="material-icons">attach_money</i>
                         <p>Administrasi</p>
                     </a>
-                </li> --}}
+                </li>
 								<li class="{{ Request::is('pengajar', 'pengajar/*') ? 'active' : ''}}">
                     <a href="/pengajar">
                         <i class="material-icons">accessibility</i>
@@ -343,6 +343,14 @@
 	<script type="text/javascript">
 
   $(document).ready(function(){
+  	$(".digit").keypress(function (e) {
+  	 //if the letter is not digit then display error and don't type anything
+  	 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+  	    //display error message
+  	    return false;
+  	  }
+  	 });
+
     $('#table').DataTable({
       aaSorting :[],
       stateSave : true,

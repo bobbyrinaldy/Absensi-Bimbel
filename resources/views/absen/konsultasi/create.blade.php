@@ -18,7 +18,7 @@
                   <div class="form-group">
                     <div class="col-md-12 col-md-offset-1">
                     <label for="tanggal" class="control-label">Tanggal konsultasi</label>
-                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{ old('tanggal') }}" >
+                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{ old('tanggal') }}" required>
                     </div>
                   </div>
                 </div>
@@ -41,8 +41,8 @@
 
               <div class="row">
 
-
-
+                @if (auth::user()->status == 'admin')
+                  {{-- expr --}}
                 <div class="col-md-6" style="width:42%;">
                   <div class="form-group" >
                     <div class="col-md-12 col-md-offset-1">
@@ -56,6 +56,17 @@
                       </div>
                   </div>
                 </div>
+                @else
+                <div class="col-md-6" style="width:42%;">
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="pengajar" class="control-label">Pengajar/Tutor</label>
+                      <input type="text" class="form-control" name="" placeholder="" value="{{Auth::user()->name}}" readonly>
+                      <input type="hidden" class="form-control" name="pengajar" placeholder="pengajar" value="{{Auth::user()->id}}" readonly>
+                    </div>
+                  </div>
+                </div>
+                @endif
 
                 <div class="col-md-6" >
                   <div class="form-group">

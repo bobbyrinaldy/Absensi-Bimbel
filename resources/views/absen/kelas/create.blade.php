@@ -23,7 +23,7 @@
                   <div class="form-group">
                     <div class="col-md-12 col-md-offset-1">
                     <label for="tanggal" class="control-label">Tanggal Absen</label>
-                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{ old('tanggal') }}" >
+                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{ old('tanggal') }}" required="yes">
                     </div>
                   </div>
                 </div>
@@ -59,6 +59,7 @@
               </div>
 
 
+              @if (Auth::user()->status == 'admin')
 
               <div class="row" id="admin">
 
@@ -90,6 +91,40 @@
                 </div>
 
               </div>
+
+              @else
+
+              <div class="row">
+                <div class="col-md-6" style="width:42%;">
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="matkul" class="control-label">Matakuliah</label>
+                      @if ($teacher->pengajar == "M")
+                        <input type="text" class="form-control" name="" placeholder="" value="Matematika" readonly="yes">
+                        <input type="hidden" class="form-control" name="matkul" placeholder="matkul" value="M" readonly="yes">
+                      @elseif ($teacher->pengajar == "F")                     
+                        <input type="text" class="form-control" name="" placeholder="" value="Fisika" readonly="yes">
+                        <input type="hidden" class="form-control" name="matkul" placeholder="matkul" value="F" readonly="yes">
+                      @elseif ($teacher->pengajar == "K")
+                        <input type="text" class="form-control" name="" placeholder="" value="Kimia" readonly="yes">
+                        <input type="hidden" class="form-control" name="matkul" placeholder="matkul" value="K" readonly="yes">
+                      @endif
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6" >
+                  <div class="form-group">
+                    <div class="col-md-12 col-md-offset-1">
+                    <label for="pengajar" class="control-label">Pengajar/Tutor</label>
+                      <input type="text" class="form-control" name="" id="" placeholder="Pengajar" value="{{auth::user()->name}}" readonly >
+                      <input type="hidden" class="form-control" name="pengajar" id="pengajar" placeholder="Waktu" value="{{auth::user()->teacher_id}}" readonly >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              @endif
 
               {{-- <div class="row" id="user">
                 <div class="col-md-6" style="width:42%;">
@@ -148,9 +183,11 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <div class="col-md-12 col-md-offset-1">
+                      @if (auth::user()->status == 'admin')
                       <label for="petugas" class="control-label">Petugas yang menginput</label>
-                      <input type="hidden" class="form-control" id="petugas" name="petugas" value="{{auth::user()->id}}" readonly>
                       <input type="text" class="form-control" id="" name="" value="{{auth::user()->name}}" readonly>
+                      @endif
+                      <input type="hidden" class="form-control" id="petugas" name="petugas" value="{{auth::user()->id}}" readonly>
                       </div>
                     </div>
                   </div>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Model\Absence;
 use App\Model\Group;
 use App\Model\Subgroup;
 use App\Model\Teacher;
-use App\Model\Absence;
+use App\User;
+use Auth;
 use DB;
+use Illuminate\Http\Request;
 
 
 class AbsenceController extends Controller
@@ -24,6 +26,9 @@ class AbsenceController extends Controller
       $data['P'] = Group::where('kriteria','P')->get();
       $data['D'] = Group::where('kriteria','D')->get();
       $data['T'] = Group::where('kriteria','T')->get();
+      $data['user'] = User::where('id',Auth::user()->id)->first();
+      $data['teacher'] = Teacher::find($data['user']->teacher_id);
+      // dd($data['teacher']);
 
       return view('absen/kelas/create',$data);
     }

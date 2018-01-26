@@ -18,7 +18,7 @@
                   <div class="form-group">
                     <div class="col-md-12 col-md-offset-1">
                     <label for="tanggal" class="control-label">Tanggal konsultasi</label>
-                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{$con->tanggal}}" >
+                      <input type="text" class="form-control date" id="date" name="tanggal" placeholder="Tanggal Absen" value="{{$con->tanggal}}" required>
                     </div>
                   </div>
                 </div>
